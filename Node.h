@@ -1,5 +1,6 @@
 // Node.h
 
+#include <string>
 #ifndef NODE_H_INCLUDED
 #define NODE_H_INCLUDED
 
@@ -7,9 +8,12 @@ class Node {
   public:
   int* keys;
   Node** children;
-  // int n;
+  Node* parent;
   bool leaf;
+  int length;
 
   Node();
+  Node(int key, bool isLeaf);
+  //int length();
 };
 #endif
