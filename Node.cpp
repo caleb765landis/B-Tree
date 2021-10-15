@@ -10,11 +10,11 @@ Node::Node() {
   length = 0;
 }
 
-Node::Node(int key, bool isLeaf, Node* parent) {
+Node::Node(int key, bool isLeaf, Node* newParent) {
   keys = new int[5];
   keys[0] = key;
-  children = new Node*[5];
-  parent = parent;
+  children = new Node*[6];
+  parent = newParent;
   leaf = isLeaf;
   length = 1;
 }

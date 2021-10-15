@@ -13,7 +13,7 @@ class Node {
   int length;
 
   Node();
-  Node(int key, bool isLeaf, Node* parent);
+  Node(int key, bool isLeaf, Node* newParent);
   //int length();
 };
 #endif
