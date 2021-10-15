@@ -14,53 +14,23 @@ void BTree::insert(int key) {
   int location = 0;
 
   while (keepGoing) {
-    /*
-    std::cout << "keys[0] " <<  currentNode -> keys[0] << std::endl;
-    std::cout << "keys[1] " <<  currentNode -> keys[1] << std::endl;
-    std::cout << "keys[2] " <<  currentNode -> keys[2] << std::endl;
-    */
-    
     // if currentNode is a leaf
     if (currentNode -> leaf == true) {
       // find location where key will be placed
       for (int i = 0; i < currentNode -> length; i++) {
-        if (currentNode -> keys[i] > key) {
-          location = i;
+        if (currentNode -> keys[i] < key) {
+          location = i + 1;
         }  // end if
       } // end for
-      //std::cout << location << std::endl;
 
-      for (int j = currentNode -> length; j > location; j--) {
+      // shift elements forward
+      for (int j = currentNode -> length; j >= location; j--) {
          currentNode -> keys[j] = currentNode -> keys[j - 1];
       }
 
+      // insert key into correct position in keys
       currentNode -> keys[location] = key;
       currentNode -> length++;
-
-      /*
-      // create a temp array
-      int* temp = new int[5];
-
-      // fill temp with ints from keys up until location
-      if (location != 0) {
-      for (int j = 0; j < location; j++) {
-        temp[j] = currentNode -> keys[j];
-      } // end for
-      }
-
-      // add key
-      temp[location] = key;
-
-      // fill temp with remaining ints from keys, if any
-      for (int k = location; k < 5; k++) {
-        temp[k+1] = currentNode -> keys[k];
-      } // end for
-
-      // set keys = temp
-      currentNode -> keys = temp;
-      */
-
-
 
 
       //if currentNode is full
@@ -71,7 +41,7 @@ void BTree::insert(int key) {
 
       keepGoing = false;
 
-
+      // print array for testing
       for (int x = 0; x < currentNode -> length; x++) {
         std::cout << currentNode -> keys[x] << ", ";
         //std::cout << temp[x];
@@ -81,6 +51,7 @@ void BTree::insert(int key) {
     // if currentNode is not a leaf
     } else {
       // find which child is going to have new key
+
 
       //currentNode = node pointer for next child to search through
     } // end if
