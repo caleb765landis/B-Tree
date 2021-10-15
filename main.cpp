@@ -31,4 +31,24 @@ int main() {
   t.insert(9);
   t.insert(23);
   t.insert(45);
+
+  for (int x = 0; x < t.root -> length; x++) {
+    std::cout << t.root -> keys[x] << ", ";
+    //std::cout << temp[x];
+  }
+  std::cout << std::endl;
+
+  for (int x = 0; x < t.root -> children[0] -> length; x++) {
+    std::cout << t.root -> children[0] -> keys[x] << ", ";
+    //std::cout << temp[x];
+  }
+  std::cout << std::endl;
+
+  for (int x = 0; x < t.root -> children[1] -> length; x++) {
+    std::cout << t.root -> children[1] -> keys[x] << ", ";
+    //std::cout << temp[x];
+  }
+  std::cout << std::endl;
+
+  //std::cout << t.root -> keys[0] << std::endl;
 }
