@@ -12,5 +12,6 @@ class BTree {
   BTree(int key);
   void insert(int key);
   void split(Node* currentNode, int location);
+  void print(Node* currentNode);
 };
 #endif

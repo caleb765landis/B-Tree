@@ -11,9 +11,12 @@ class Node {
   Node* parent;
   bool leaf;
   int length;
+  //int numChildren;
+  bool hasChildren;
 
   Node();
   Node(int key, bool isLeaf, Node* newParent);
+  //void Print();
   //int length();
 };
 #endif

@@ -6,8 +6,10 @@ Node::Node() {
   keys = new int[5];
   children = new Node*[5];
   parent = NULL;
-  length = false;
+  leaf = false;
   length = 0;
+  //numChildren = 0;
+  hasChildren = false;
 }
 
 Node::Node(int key, bool isLeaf, Node* newParent) {
@@ -17,6 +19,22 @@ Node::Node(int key, bool isLeaf, Node* newParent) {
   parent = newParent;
   leaf = isLeaf;
   length = 1;
+  //numChildren = 0;
+  hasChildren = false;
+}
+
+/*
+void Node::print() {
+  for (int i = 0; i < currentNode -> length; i++) {
+    if (currentNode -> leaf == false) {
+       currentNode -> children[i] -> print();
+    }
+    std::cout << currentNode -> keys[i] << ", ";
+  }
+
+  if (currentNode -> leaf == false) {
+    currentNode -> children[currentNode -> length] -> print();
+  }
 }
 
 /*

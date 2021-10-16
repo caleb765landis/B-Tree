@@ -123,12 +123,14 @@ void BTree::split(Node* currentNode, int location) {
     // insert median into correct position in parent's keys
     parent -> keys[parentLocation] = median;
     parent -> length++;
+    parent -> hasChildren = true;
 
-
+    /*
     // if parent is full
     if (parent -> length == 5) {
       split(parent, parentLocation);
     } // end if
+    */
 
 
     // split currentNode
@@ -141,6 +143,18 @@ void BTree::split(Node* currentNode, int location) {
     right -> length = 2;
 
 
+    // if currentNode has children, update split nodes' children
+    if (currentNode -> leaf == false) {
+      left -> leaf = false;
+      right -> leaf = false;
+
+      for (int i = 0; i <= 2; i++) {
+        left -> children[i] = currentNode -> children[i];
+        right -> children[i] = currentNode -> children[i + 4];
+      } // end for
+    }
+
+
     // update parent's children positions
     for (int k = parent -> length + 1; k > parentLocation; k--) {
       parent -> children[k] = parent -> children[k-1];
@@ -150,6 +164,11 @@ void BTree::split(Node* currentNode, int location) {
     parent -> children[parentLocation + 1] = right;
 
 
+    // if parent is full
+    if (parent -> length == 5) {
+      std::cout << "full" << parent -> children[5] -> keys[0] << std::endl;
+      split(parent, parentLocation);
+    } // end if
 
   // if currentNode doesn't have a parent
 } else {
@@ -159,6 +178,8 @@ void BTree::split(Node* currentNode, int location) {
 
     parent -> keys[0] = currentNode -> keys[2];
     parent -> length++;
+    parent -> hasChildren = true;
+
 
     Node* left = new Node(currentNode -> keys[0], true, parent);
     left -> keys[1] = currentNode -> keys[1];
@@ -169,9 +190,48 @@ void BTree::split(Node* currentNode, int location) {
     right -> keys[1] = currentNode -> keys[4];
     right -> length = 2;
     parent -> children[1] = right;
+
+
+    // if currentNode has children, update split nodes' children
+    if (currentNode -> leaf == false) {
+      left -> leaf = false;
+      right -> leaf = false;
+
+      for (int i = 0; i <= 2; i++) {
+        left -> children[i] = currentNode -> children[i];
+        right -> children[i] = currentNode -> children[i + 3];
+      } // end for
+    }
   }
 }
 
+
+void BTree::print(Node* currentNode) {
+  for (int i = 0; i < currentNode -> length; i++) {
+    if (currentNode -> leaf == false) {
+       print(currentNode -> children[i]);
+       //std::cout << currentNode -> keys[i] << ", ";
+    }
+    std::cout << currentNode -> keys[i] << ", ";
+  }
+
+  if (currentNode -> leaf == false) {
+    print(currentNode -> children[currentNode -> length]);
+  }
+
+  /*
+  if (currentNode -> numChildren > 0) {
+    for (int i = 0; i < currentNode -> numChildren; i++) {
+      print(currentNode -> children[i]);
+    } // end for
+  } // end if
+
+  for (int j = 0; j < currentNode -> length - 1; j++) {
+    std::cout << currentNode -> keys[j] << ",";
+  } // end for
+  std::cout << currentNode -> keys[currentNode -> length] << " | ";
+  */
+} // end print
 
 
 

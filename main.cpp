@@ -6,15 +6,17 @@
 using namespace std;
 
 int main() {
-  BTree t = BTree(3);
+  
 
   const int n = 18;
   int k[n] = {3,7,9,23,45,1,5,14,25,24,13,11,8,19,4,39,35,56};
 
+  BTree t = BTree(k[0]);
 
   for (int i = 1; i < n; i++) {
     t.insert(k[i]);
   }
+
 
 
   /*
@@ -37,9 +39,57 @@ int main() {
   t.insert(56);
   */
 
+
   for (int x = 0; x < t.root -> length; x++) {
-    std::cout << t.root -> keys[x] << ", ";
+    std::cout << "root " << t.root -> keys[x] << ", ";
     //std::cout << temp[x];
   }
   std::cout << std::endl;
+
+  for (int x = 0; x < t.root -> children[0] -> length; x++) {
+    std::cout << "left " << t.root -> children[0] -> keys[x] << ", ";
+    //std::cout << temp[x];
+  }
+  std::cout << std::endl;
+  std::cout << std::endl;
+
+  /*
+  for (int x = 0; x < t.root -> children[0] -> children[0] -> length; x++) {
+    std::cout << t.root -> children[0] -> children[0] -> keys[x] << ", ";
+    //std::cout << temp[x];
+  }
+  std::cout << std::endl;
+  */
+
+  std::cout << t.root -> children[0] -> children[0] -> keys[0] << std::endl;
+
+  if (t.root -> children[0] -> leaf == true) {
+    std::cout << "true" << std::endl;
+  } else {
+    std::cout << "false" << std::endl;
+  }
+
+
+  if (t.root -> children[1] -> children[2] -> leaf == true) {
+    std::cout << "true" << std::endl;
+  } else {
+    std::cout << "false" << std::endl;
+  }
+
+
+  t.print(t.root);
+  std::cout << std::endl;
+
+
 }
+
+
+
+
+
+
+
+
+
+
+// space
