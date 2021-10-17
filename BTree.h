@@ -13,5 +13,7 @@ class BTree {
   void insert(int key);
   void split(Node* currentNode, int location);
   void print(Node* currentNode);
+  void search(Node* currentNode, int n);
+  //void depth(Node* currentNode, int newDepth);
 };
 #endif
