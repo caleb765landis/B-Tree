@@ -11,8 +11,6 @@
 // prototype
 bool isNumber(std::string string);
 
-using namespace std;
-
 int main() {
   // clear screen to start the program
   system("clear");
@@ -36,7 +34,7 @@ int main() {
       ss >> input;
 
       // check if input >= 400 is true
-      if (input < 18) {
+      if (input < 400) {
         std::cout << "N must be greater than or equal to 400." << std::endl << std::endl;
 
       // input >= 400, set n, end loop
@@ -52,109 +50,48 @@ int main() {
     } // end if user input is a number
   } // end while
 
-
   int n = input;
+
+  // create a vector of keys
   std::vector<int> k;
 
-
-  cout << "Random ints: ";
-
   int i = 0;
-  //srand(n);
   while (i < n) {
     bool duplicate = false;
 
+    // get a random number
     int num = rand() % ((3*n) + 1);
-    std::cout << num << ", ";
 
-    //if (std::find(std::begin(k), std::end(k), num) != std::end(k)) {
+    // check to make sure random num is not already in vector
     if (std::find(k.begin(), k.end(), num) != k.end()) {
       duplicate = true;
-    }
+    } // end if
 
     if (duplicate == false) {
-      //k[i] = num;
-      //k.insert(i, num);
       k.push_back(num);
       i++;
     } // end if
-  } // end for/while
-    std::cout << std::endl;
+  } // end while
 
-
-    /*
-    for (int j = 0; j < n; j++) {
-      if (num == k[j]) {
-        duplicate = true;
-      } // end if
-    } // end for
-    if (duplicate == false) {
-      k[i] = num;
-    }
-    */
-
+  // create B-Tree and set root
   BTree t = BTree(k[0]);
 
-  std::cout << "last " << k[n - 1] << std::endl;
-
-
-  cout << "Elements in k[n]: " << endl;
-  std::cout << k[0] << ", " << endl;
+  // insert keys from vector into B-Tree
   for (int j = 1; j < n; j++) {
-    std::cout << k[j] << ", ";
-	t.insert(k[j]);
-	//t.print(t.root);
-	//std::cout << std::endl << std::endl;
+	   t.insert(k[j]);
+  } // end for
 
-  }
-  std::cout << std::endl;
-
-
-  /*
-  for (int x = 0; x < t.root -> length; x++) {
-    std::cout << "root " << t.root -> keys[x] << ", ";
-    //std::cout << temp[x];
-  }
-  std::cout << std::endl;
-  for (int x = 0; x < t.root -> children[0] -> length; x++) {
-    std::cout << "left " << t.root -> children[0] -> keys[x] << ", ";
-    //std::cout << temp[x];
-  }
-  std::cout << std::endl;
-  std::cout << std::endl;
-  for (int x = 0; x < t.root -> children[0] -> children[0] -> length; x++) {
-    std::cout << t.root -> children[0] -> children[0] -> keys[x] << ", ";
-    //std::cout << temp[x];
-  }
-  std::cout << std::endl;
-  */
-
-  //std::cout << t.root -> children[0] -> children[0] -> keys[0] << std::endl;
-
-  /*
-  if (t.root -> children[0] -> leaf == true) {
-    std::cout << "true" << std::endl;
-  } else {
-    std::cout << "false" << std::endl;
-  }
-  if (t.root -> children[1] -> children[2] -> leaf == true) {
-    std::cout << "true" << std::endl;
-  } else {
-    std::cout << "false" << std::endl;
-  }
-  */
-
-  //t.depth(t.root, 0);
+  // print all elements in B-Tree
   std::cout << "All elements in B-Tree: " << std::endl;
   t.print(t.root);
   std::cout << std::endl << std::endl;
 
+  // print all elements in range [n, 2n]
   std::cout << "All elements in B-Tree within range [" << n << ", " << (2 * n) << "]: " << std::endl;
   for (int i = n; i <= (2*n); i++) {
     t.search(t.root, i);
   } // end search for
-  std::cout << std::endl;
-  //delete t.root;
+  std::cout << std::endl << std::endl;
 } // end main
 
 // checks if all characters in given string are numbers
@@ -169,12 +106,3 @@ bool isNumber(std::string string) {
   } // end for
   return true;
 } // end isNumber()
-
-
-
-
-
-
-
-
-// space
