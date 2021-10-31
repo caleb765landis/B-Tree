@@ -67,7 +67,8 @@ int main() {
     int num = rand() % ((3*n) + 1);
     std::cout << num << ", ";
 
-    if (std::find(std::begin(k), std::end(k), num) != std::end(k)) {
+    //if (std::find(std::begin(k), std::end(k), num) != std::end(k)) {
+    if (std::find(k.begin(), k.end(), num) != k.end()) {
       duplicate = true;
     }
 
@@ -87,7 +88,6 @@ int main() {
         duplicate = true;
       } // end if
     } // end for
-
     if (duplicate == false) {
       k[i] = num;
     }
@@ -101,8 +101,11 @@ int main() {
   cout << "Elements in k[n]: " << endl;
   std::cout << k[0] << ", " << endl;
   for (int j = 1; j < n; j++) {
-    std::cout << k[j] << ", " << endl;
-    t.insert(k[j]);
+    std::cout << k[j] << ", ";
+	t.insert(k[j]);
+	//t.print(t.root);
+	//std::cout << std::endl << std::endl;
+
   }
   std::cout << std::endl;
 
@@ -113,15 +116,12 @@ int main() {
     //std::cout << temp[x];
   }
   std::cout << std::endl;
-
   for (int x = 0; x < t.root -> children[0] -> length; x++) {
     std::cout << "left " << t.root -> children[0] -> keys[x] << ", ";
     //std::cout << temp[x];
   }
   std::cout << std::endl;
   std::cout << std::endl;
-
-
   for (int x = 0; x < t.root -> children[0] -> children[0] -> length; x++) {
     std::cout << t.root -> children[0] -> children[0] -> keys[x] << ", ";
     //std::cout << temp[x];
@@ -137,8 +137,6 @@ int main() {
   } else {
     std::cout << "false" << std::endl;
   }
-
-
   if (t.root -> children[1] -> children[2] -> leaf == true) {
     std::cout << "true" << std::endl;
   } else {
@@ -156,6 +154,7 @@ int main() {
     t.search(t.root, i);
   } // end search for
   std::cout << std::endl;
+  //delete t.root;
 } // end main
 
 // checks if all characters in given string are numbers
