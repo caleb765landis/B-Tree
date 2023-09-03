@@ -1,3 +1,6 @@
+# B-Tree
+## My implementation of the B-Tree data structure.
+
 To run the B-Tree program, use "make run".
 
 When the program first starts, the terminal will be cleared, and the user will be asked to input a number (N) where N >= 400.
